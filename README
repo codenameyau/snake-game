@@ -1,0 +1,14 @@
+# Snake
+
+Author: Jorge Yau <codenameyau@gmail.com>
+
+Hello! This is an implementation of Snake on a HTML canvas.
+
+### Running the game
+
+```
+npm install -g http-server
+http-server -p 9090 -c-1
+```
+
+Then visit http://localhost:9090
