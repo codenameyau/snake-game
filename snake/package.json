@@ -1,0 +1,19 @@
+{
+  "name": "snake",
+  "version": "1.0.0",
+  "description": "Snake Game",
+  "main": "public/snake.js",
+  "scripts": {
+    "compile": "babel public/scripts/snake.js -o public/scripts/snake-es5.js"
+  },
+  "keywords": [
+    "snake",
+    "game",
+    "js"
+  ],
+  "author": "Jorge Yau <codenameyau@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.24.1"
+  }
+}

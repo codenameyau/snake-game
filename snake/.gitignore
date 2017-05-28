@@ -1,0 +1,66 @@
+#####################################################################
+# PROJECT FILES
+#####################################################################
+
+
+
+#####################################################################
+# JAVASCRIPT SPECIFIC
+#####################################################################
+
+# PACKAGE MANAGEMENT
+node_modules
+jspm_packages
+bower_components
+
+# TEST COVERAGE
+lib-cov
+coverage
+build/reports
+test/e2e/dist
+/export
+
+# BUILD TOOLS
+.grunt
+dist
+
+# CONFIGURATION
+.lock-wscript
+.idea
+
+# BINARY
+build/Release
+
+
+#####################################################################
+# MISCELLANEOUS FILES
+#####################################################################
+
+# DATABASE
+*.sqlite*
+
+# TEMP / CACHE
+temp
+.sass-cache
+.cache
+*.spec
+*.tmp
+*~
+
+# RUNTIME DATA
+pids
+*.pid
+*.seed
+
+# LOGS
+[Ll]og*
+*.log
+
+# OS CRUFT
+.DS_Store
+.DS_STORE
+thumbs.db
+._*
+
+# DEVOPS
+.vagrant
