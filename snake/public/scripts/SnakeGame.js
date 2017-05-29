@@ -25,11 +25,13 @@ export default class SnakeGame {
   }
 
   renderSnake () {
-    this.ctx.beginPath();
-    this.ctx.moveTo(0, 0);
-    this.ctx.lineTo(300, 150);
-    this.ctx.strokeStyle = this.snake.color;
-    this.ctx.stroke();
+    this.snake.segments.forEach((segment, i) => {
+      this.ctx.fillStyle = i ? this.snake.color : this.snake.headColor;
+      const posX = segment[0] * this.cellSize;
+      const posY = segment[1] * this.cellSize;
+      const sizeWithPadding = this.cellSize - 2;
+      this.ctx.fillRect(posX, posY, sizeWithPadding, sizeWithPadding);
+    });
   }
 
   renderFood () {
@@ -52,10 +54,10 @@ export default class SnakeGame {
   }
 
   spawnSnake () {
-    this.snake = new Snake(1, 1, 5, 1);
-    this.snake = new Snake(1, 1, 5, 1);
-    this.snake = new Snake(1, 1, 5, 1);
-    this.snake = new Snake(1, 1, 5, 1);
+    // this.snake = new Snake(1, 2, 5, 2);
+    // this.snake = new Snake(4, 0, 0, 0);
+    // this.snake = new Snake(0, 0, 0, 4);
+    this.snake = new Snake(0, 4, 0, 0);
   }
 
   spawnFood () {
@@ -64,7 +66,6 @@ export default class SnakeGame {
   }
 
   getEmptyCell () {
-    // By definition an empty square is a non-snake segment occupied cell.
     return [0, 0];
   }
 

@@ -2,6 +2,7 @@ export default class Snake {
 
   constructor (x1, y1, x2, y2, options = {}) {
     this.startingPosition = [x1, y1, x2, y2];
+    this.headColor = options.headColor || '#ec2626';
     this.color = options.color || '#8df27c';
     this.segments = [];
     this.direction = null;
