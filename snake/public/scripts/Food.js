@@ -4,7 +4,7 @@ export default class Food {
     this.x = x;
     this.y = y;
     this.value = options.value || 1;
-    this.color = options.color || 'red';
+    this.color = options.color || '#cdb92b';
   }
 
 }

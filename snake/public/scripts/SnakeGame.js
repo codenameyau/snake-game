@@ -12,6 +12,7 @@ export default class SnakeGame {
     this.width = options.width || 40;
     this.height = options.height || 40;
     this.cellSize = Math.floor(this.canvas.width / this.width);
+    this.cellPadded = this.cellSize - 2;
 
     // Game entities and mechanics.
     this.snake = null;
@@ -29,13 +30,15 @@ export default class SnakeGame {
       this.ctx.fillStyle = i ? this.snake.color : this.snake.headColor;
       const posX = segment[0] * this.cellSize;
       const posY = segment[1] * this.cellSize;
-      const sizeWithPadding = this.cellSize - 2;
-      this.ctx.fillRect(posX, posY, sizeWithPadding, sizeWithPadding);
+      this.ctx.fillRect(posX, posY, this.cellPadded, this.cellPadded);
     });
   }
 
   renderFood () {
-
+    this.ctx.fillStyle = this.food.color;
+    const posX = this.food.x * this.cellSize;
+    const posY = this.food.y * this.cellSize;
+    this.ctx.fillRect(posX, posY, this.cellPadded, this.cellPadded);
   }
 
   start () {
@@ -54,19 +57,16 @@ export default class SnakeGame {
   }
 
   spawnSnake () {
-    // this.snake = new Snake(1, 2, 5, 2);
-    // this.snake = new Snake(4, 0, 0, 0);
-    // this.snake = new Snake(0, 0, 0, 4);
-    this.snake = new Snake(0, 4, 0, 0);
+    this.snake = new Snake(5, 2, 1, 2);
   }
 
   spawnFood () {
-    const emptyCell = this.getEmptyCell();
+    const emptyCell = this.getRandomEmptyCell();
     this.food = new Food(emptyCell[0], emptyCell[1]);
   }
 
-  getEmptyCell () {
-    return [0, 0];
+  getRandomEmptyCell () {
+    return [8, 8];
   }
 
   isEmptyCell () {

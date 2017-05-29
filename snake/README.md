@@ -34,9 +34,10 @@ These are the steps I took when creating this game.
 - Design and create Game class
 - Design and create Snake class
 - Design and create Food class
-- Implement Spawn snake and create segments
-- Render randomly generated snake on canvas
-- Render randomly generated food on canvas
+- Implement and render snake
+- Implement and render food
+- Spawn randomly generated snake on canvas
+- Spawn randomly generated food on canvas
 - Handle user input
 - Implement start/pause/restart game
 - Implement game loop and rendering animation frames
@@ -44,5 +45,8 @@ These are the steps I took when creating this game.
 - Implement collision and events
 - Implement score calculator
 - Implement top 5 high scores
+
+### Enhancement
+- Revisit collision detection algorithm
 - Implement music and sound effects
 - Implement no walls option
