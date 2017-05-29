@@ -4,7 +4,8 @@
   "description": "Snake Game",
   "main": "public/snake.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "test": "mocha --compilers js:babel-core/register"
   },
   "keywords": [
     "snake",
@@ -25,9 +26,11 @@
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.0.0",
     "babel-preset-es2015": "^6.24.1",
+    "chai": "^4.0.0",
     "eslint": "^3.0.1",
     "eslint-config-standard": "^5.1.0",
+    "eslint-plugin-promise": "^2.0.0",
     "eslint-plugin-standard": "^2.0.0",
-    "eslint-plugin-promise": "^2.0.0"
+    "mocha": "^3.4.2"
   }
 }

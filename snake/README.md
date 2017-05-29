@@ -2,19 +2,33 @@
 
 Author: Jorge Yau <codenameyau@gmail.com>
 
-Hello! This is an implementation of Snake on a HTML canvas in ES6.
+Hello! This is my implementation of Snake on a HTML canvas in ES6.
+You can move with the arrow keys and press space to start.
 
 ### Running the game
 
 ```bash
-# Compiling ES6 with Babel CLI
 npm install
-babel public/scripts/snake.js -o public/scripts/snake-es5.js
-babel public/scripts/snake.js -o public/scripts/snake-es5.js --watch
-
-# Running game
-npm install -g http-server
-http-server -p 9090 -c-1
+npm start
 ```
 
-Then visit http://localhost:9090
+Then visit http://localhost:8080
+
+### Tasks
+These are the steps I took when creating this game.
+- Setup basic Webpack with loaders
+- Design Game class
+- Design Snake class and data structure
+- Design Food class
+- Spawn snake and create segments
+- Calculate snake direction vector
+- Render canvas
+- Handle user input
+- Handle movement and collision
+
+### Tests
+You will need node v6+ to run the tests.
+
+```bash
+npm test
+```
