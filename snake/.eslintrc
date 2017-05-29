@@ -9,7 +9,8 @@
   "rules": {
     "mocha/no-exclusive-tests": "error",
     "semi" : [1, "always"],
-    "max-len": [2, 100, 2]
+    "max-len": [2, 100, 2],
+    "brace-style": 0
   },
   "plugins": [
     "mocha"
