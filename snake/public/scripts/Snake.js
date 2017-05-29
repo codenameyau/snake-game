@@ -5,7 +5,7 @@ export default class Snake {
     this.segments = [];
     this.createSegments(x1, y1, x2, y2);
     this.direction = this.computeDirection(x1, y1, x2, y2);
-    this.color = options.color || 'blue';
+    this.color = options.color || '#8df27c';
   }
 
   createSegments (x1, y1, x2, y2) {

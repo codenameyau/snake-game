@@ -28,6 +28,7 @@ export default class SnakeGame {
     this.ctx.beginPath();
     this.ctx.moveTo(0, 0);
     this.ctx.lineTo(300, 150);
+    this.ctx.strokeStyle = this.snake.color;
     this.ctx.stroke();
   }
 

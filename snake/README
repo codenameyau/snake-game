@@ -3,6 +3,7 @@
 Author: Jorge Yau <codenameyau@gmail.com>
 
 Hello! This is an implementation of Snake on a HTML canvas in ES6.
+You can move with the arrow keys and press space to start.
 
 ### Running the game
 
