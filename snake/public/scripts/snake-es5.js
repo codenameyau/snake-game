@@ -15,8 +15,16 @@ var SnakeGame = (function () {
 
     _classCallCheck(this, SnakeGame);
 
+    // Canvas and rendering properties.
     this.canvas = document.querySelector(canvasId);
     this.ctx = this.canvas.getContext('2d');
+
+    // Game internals and options.
+    this.width = options.width || 40;
+    this.height = options.height || 40;
+    this.cellSize = Math.floor(this.canvas.width / width);
+
+    // Game entities and mechanics.
     this.snake = null;
     this.food = null;
     this.score = 0;
@@ -29,11 +37,20 @@ var SnakeGame = (function () {
   _createClass(SnakeGame, [{
     key: 'render',
     value: function render() {
+      this.renderSnake();
+      this.renderFood();
+    }
+  }, {
+    key: 'renderSnake',
+    value: function renderSnake() {
       this.ctx.beginPath();
       this.ctx.moveTo(0, 0);
       this.ctx.lineTo(300, 150);
       this.ctx.stroke();
     }
+  }, {
+    key: 'renderFood',
+    value: function renderFood() {}
   }, {
     key: 'start',
     value: function start() {
@@ -61,16 +78,19 @@ var SnakeGame = (function () {
     key: 'spawnFood',
     value: function spawnFood() {
       var emptyCell = this.getEmptyCell();
+      this.food = new Food(emptyCell[0], emptyCell[1]);
     }
   }, {
     key: 'getEmptyCell',
     value: function getEmptyCell() {
       // By definition an empty square is a non-snake segment occupied cell.
-
+      return [0, 0];
     }
   }, {
     key: 'isEmptyCell',
-    value: function isEmptyCell() {}
+    value: function isEmptyCell() {
+      return true;
+    }
   }]);
 
   return SnakeGame;
@@ -87,7 +107,7 @@ var Snake = (function () {
   }
 
   /********************************************************************
-  * MAIN PROGRAM
+  * FOOD CLASS
   *********************************************************************/
 
   _createClass(Snake, [{
@@ -108,6 +128,21 @@ var Snake = (function () {
 
   return Snake;
 })();
+
+var Food = function Food(x, y) {
+  var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+
+  _classCallCheck(this, Food);
+
+  this.x = x;
+  this.y = y;
+  this.value = options.value || 1;
+}
+
+/********************************************************************
+* MAIN PROGRAM
+*********************************************************************/
+;
 
 var game = new SnakeGame('#snake-game', { width: 40, length: 40 });
 game.newGame();

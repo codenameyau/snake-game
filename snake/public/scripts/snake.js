@@ -6,18 +6,35 @@
 class SnakeGame {
 
   constructor(canvasId='snake-game', options={}) {
+    // Canvas and rendering properties.
     this.canvas = document.querySelector(canvasId);
     this.ctx = this.canvas.getContext('2d');
+
+    // Game internals and options.
+    this.width = options.width || 40;
+    this.height = options.height || 40;
+    this.cellSize = Math.floor(this.canvas.width / width);
+
+    // Game entities and mechanics.
     this.snake = null;
     this.food = null;
     this.score = 0;
   }
 
   render() {
+    this.renderSnake();
+    this.renderFood();
+  }
+
+  renderSnake() {
     this.ctx.beginPath();
     this.ctx.moveTo(0,0);
     this.ctx.lineTo(300,150);
     this.ctx.stroke();
+  }
+
+  renderFood() {
+
   }
 
   start() {
@@ -41,20 +58,19 @@ class SnakeGame {
 
   spawnFood() {
     const emptyCell = this.getEmptyCell();
+    this.food = new Food(emptyCell[0], emptyCell[1]);
   }
 
   getEmptyCell() {
     // By definition an empty square is a non-snake segment occupied cell.
-
+    return [0, 0];
   }
 
   isEmptyCell() {
-
+    return true;
   }
 
 }
-
-
 
 /********************************************************************
 * SNAKE CLASS
@@ -79,6 +95,17 @@ class Snake {
 
   computeDirection(x1, y1, x2, y2) {
 
+  }
+}
+
+/********************************************************************
+* FOOD CLASS
+*********************************************************************/
+class Food {
+  constructor(x, y, options={}) {
+    this.x = x;
+    this.y = y;
+    this.value = options.value || 1;
   }
 }
 
