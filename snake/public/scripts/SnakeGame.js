@@ -59,11 +59,10 @@ export default class SnakeGame {
   }
 
   initEventListeners () {
-    const handleKeyup = (event) => {
-      if (!this.gameInputs.has(event.code)) {
-        return;
-      }
+    const handleInputs = (event) => {
+      if (!this.gameInputs.has(event.code)) { return; }
 
+      event.stopPropagation();
       event.preventDefault();
 
       if (event.code === 'Escape') {
@@ -86,7 +85,7 @@ export default class SnakeGame {
       this.snake.setDirection(newDirection);
     };
 
-    document.addEventListener('keyup', handleKeyup, false);
+    document.addEventListener('keydown', handleInputs, false);
   }
 
   newGame () {
