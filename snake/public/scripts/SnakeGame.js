@@ -8,19 +8,59 @@ export default class SnakeGame {
     this.canvas = document.querySelector(canvasId);
     this.ctx = this.canvas.getContext('2d');
 
-    // Game internals and options.
+    // Define game internals and options.
     this.initLength = options.length || 8;
     this.width = options.width || 40;
     this.height = options.height || 40;
     this.cellSize = Math.floor(this.canvas.width / this.width);
     this.cellPadded = this.cellSize - 2;
     this.cells = [];
-    this.populateCells();
+    this.running = false;
 
     // Game entities and mechanics.
     this.snake = null;
     this.food = null;
     this.score = 0;
+
+    // Initialize internals.
+    this.resetCanvas();
+    this.resetCells();
+    this.initEventListeners();
+  }
+
+  resetCanvas () {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  resetCells () {
+    // Potentially re-visit with sparse matrix.
+    for (let i = 0; i < this.width; i++) {
+      this.cells.push([]);
+      for (let j = 0; j < this.height; j++) {
+        this.cells[i].push(null);
+      }
+    }
+  }
+
+  initEventListeners () {
+    const handleKeyup = (event) => {
+      if (event.code === 'Escape') {
+        this.newGame();
+      } else if (event.code === 'Space') {
+        this.running = true;
+      }
+
+      if (!this.running) { return; }
+
+      switch (event.code) {
+        case 'ArrowUp': this.snake.setDirection('up'); break;
+        case 'ArrowDown': this.snake.setDirection('down'); break;
+        case 'ArrowLeft': this.snake.setDirection('left'); break;
+        case 'ArrowRight': this.snake.setDirection('right'); break;
+      }
+    };
+
+    document.addEventListener('keyup', handleKeyup, false);
   }
 
   render () {
@@ -45,6 +85,7 @@ export default class SnakeGame {
   }
 
   start () {
+    this.running = true;
     this.render();
   }
 
@@ -53,9 +94,12 @@ export default class SnakeGame {
   }
 
   newGame () {
+    this.running = false;
+    this.resetCanvas();
+    this.resetCells();
+    this.resetScore();
     this.spawnSnake();
     this.spawnFood();
-    this.resetScore();
     this.start();
   }
 
@@ -98,16 +142,6 @@ export default class SnakeGame {
     this.cells[emptyCell[0]][emptyCell[1]] = this.food;
   }
 
-  populateCells () {
-    // Potentially re-visit with sparse matrix.
-    for (let i = 0; i < this.width; i++) {
-      this.cells.push([]);
-      for (let j = 0; j < this.height; j++) {
-        this.cells[i].push(null);
-      }
-    }
-  }
-
   isEmptyCell (x, y) {
     return this.cells[x][y] === null;
   }
@@ -125,5 +159,4 @@ export default class SnakeGame {
   _getRandomNumber (min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
-
 }

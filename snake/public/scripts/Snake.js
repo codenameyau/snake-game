@@ -46,4 +46,14 @@ export default class Snake {
     }
   }
 
+  setDirection (direction) {
+    const validDirection = (
+      direction === 'left' || direction === 'right' ||
+      direction === 'up' || direction === 'down'
+    );
+
+    if (validDirection) {
+      this.direction = direction;
+    }
+  }
 }
