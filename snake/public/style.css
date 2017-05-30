@@ -45,6 +45,7 @@ body {
 
 .snake-game-status {
   color: #eee;
+  font-size: 18px;
 }
 
 .scoreboard-highscores {

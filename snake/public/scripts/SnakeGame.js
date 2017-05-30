@@ -21,9 +21,17 @@ export default class SnakeGame {
     this.cells = [];
     this.running = false;
     this.gameOver = false;
+
     this.gameInputs = new Set(
       ['Escape', 'Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']
     );
+
+    this.directionMap = {
+      ArrowUp: 'up',
+      ArrowDown: 'down',
+      ArrowLeft: 'left',
+      ArrowRight: 'right'
+    };
 
     // Game entities and mechanics.
     this.snake = null;
@@ -59,19 +67,23 @@ export default class SnakeGame {
       event.preventDefault();
 
       if (event.code === 'Escape') {
-        this.newGame();
+        return this.newGame();
       } else if (event.code === 'Space') {
-        this.toggleRunning();
+        return this.toggleRunning();
       }
 
-      if (!this.running) { return; }
+      const newDirection = this.directionMap[event.code];
 
-      switch (event.code) {
-        case 'ArrowUp': this.snake.setDirection('up'); break;
-        case 'ArrowDown': this.snake.setDirection('down'); break;
-        case 'ArrowLeft': this.snake.setDirection('left'); break;
-        case 'ArrowRight': this.snake.setDirection('right'); break;
-      }
+      // Prevent the snake from moving backwards and colliding with itself.
+      const movingBackwards = (
+        this.snake.direction === 'left' && newDirection === 'right' ||
+        this.snake.direction === 'right' && newDirection === 'left' ||
+        this.snake.direction === 'up' && newDirection === 'down' ||
+        this.snake.direction === 'down' && newDirection === 'up'
+      );
+
+      if (!this.running || movingBackwards) { return; }
+      this.snake.setDirection(newDirection);
     };
 
     document.addEventListener('keyup', handleKeyup, false);

@@ -47,16 +47,17 @@ These are the steps I took when creating this game.
 [+] Handle user input
 [+] Implement game status
 [+] Implement start/pause/restart game
-[-] Implement game loop and rendering animation frames
-[-] Implement snake movement
-[-] Implement collision and events
-[-] Implement score and calculator
+[+] Implement game loop and rendering animation frames
+[+] Implement snake movement
+[+] Implement snake and food collision events
+[+] Implement wall collision
+[+] Implement score and calculator
 [-] Implement top 5 high scores
 ```
 
-### Enhancement
+### Enhancements
 ```
-[-] Revisit collision detection algorithm
-[-] Implement music and sound effects
+[-] Revisit collision detection algorithm with sparse matrix
+[-] Add music and sound effects
 [-] Implement no walls option
 ```
