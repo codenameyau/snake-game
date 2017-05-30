@@ -3,7 +3,7 @@ export default class Snake {
   constructor (x1, y1, x2, y2, options = {}) {
     this.startingPosition = [x1, y1, x2, y2];
     this.headColor = options.headColor || '#ec2626';
-    this.color = options.color || '#8df27c';
+    this.color = options.color || '#52ee38';
     this.segments = [];
     this.direction = null;
     this.createSegments(x1, y1, x2, y2);
@@ -29,7 +29,6 @@ export default class Snake {
       for (let i = x1; i >= x2; i--) {
         this.segments.push([i, y1]);
       }
-      console.log(this.segments);
     }
 
     else if (y1 < y2) {

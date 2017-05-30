@@ -28,25 +28,29 @@ the game is over.
 
 ### Tasks
 These are the steps I took when creating this game.
-- Setup Webpack for ES6
-- Setup ES6 tests with Mocha and Chai
-- Design and create the HTML / CSS game layout
-- Design and create Game class
-- Design and create Snake class
-- Design and create Food class
-- Implement and render snake
-- Implement and render food
-- Spawn randomly generated snake on canvas
-- Spawn randomly generated food on canvas
-- Handle user input
-- Implement start/pause/restart game
-- Implement game loop and rendering animation frames
-- Implement snake movement
-- Implement collision and events
-- Implement score calculator
-- Implement top 5 high scores
+```
+[+] Setup Webpack for ES6
+[+] Setup ES6 tests with Mocha and Chai
+[+] Design and create the HTML / CSS game layout
+[+] Design and create Game class
+[+] Design and create Snake class
+[+] Design and create Food class
+[+] Implement and render snake
+[+] Implement and render food
+[-] Spawn randomly generated snake on canvas
+[-] Spawn randomly generated food on canvas
+[-] Handle user input
+[-] Implement start/pause/restart game
+[-] Implement game loop and rendering animation frames
+[-] Implement snake movement
+[-] Implement collision and events
+[-] Implement score calculator
+[-] Implement top 5 high scores
+```
 
 ### Enhancement
-- Revisit collision detection algorithm
-- Implement music and sound effects
-- Implement no walls option
+```
+[-] Revisit collision detection algorithm
+[-] Implement music and sound effects
+[-] Implement no walls option
+```
