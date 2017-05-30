@@ -7,15 +7,18 @@ export default class SnakeGame {
     // Canvas and rendering properties.
     this.canvas = document.querySelector(canvasId);
     this.ctx = this.canvas.getContext('2d');
-
-    // Define game internals and options.
-    this.initLength = options.length || 8;
     this.width = options.width || 40;
     this.height = options.height || 40;
     this.cellSize = Math.floor(this.canvas.width / this.width);
     this.cellPadded = this.cellSize - 2;
+
+    // Define game internals and options.
+    this.initLength = options.length || 8;
     this.cells = [];
     this.running = false;
+    this.gameInputs = new Set(
+      ['Escape', 'Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']
+    );
 
     // Game entities and mechanics.
     this.snake = null;
@@ -44,10 +47,16 @@ export default class SnakeGame {
 
   initEventListeners () {
     const handleKeyup = (event) => {
+      if (this.gameInputs.has(event.code)) {
+        event.preventDefault();
+      } else {
+        return;
+      }
+
       if (event.code === 'Escape') {
         this.newGame();
       } else if (event.code === 'Space') {
-        this.running = true;
+        this.toggleRunning();
       }
 
       if (!this.running) { return; }
@@ -84,9 +93,18 @@ export default class SnakeGame {
     this.ctx.fillRect(posX, posY, this.cellPadded, this.cellPadded);
   }
 
+  renderStatus () {
+    const status = document.body.querySelector('.snake-game-status');
+    status.innerHTML = this.running ? 'Playing' : 'Paused';
+  }
+
   start () {
     this.running = true;
-    this.render();
+  }
+
+  toggleRunning () {
+    this.running = !this.running;
+    this.renderStatus();
   }
 
   resetScore () {
@@ -97,10 +115,11 @@ export default class SnakeGame {
     this.running = false;
     this.resetCanvas();
     this.resetCells();
+    this.renderStatus();
     this.resetScore();
     this.spawnSnake();
     this.spawnFood();
-    this.start();
+    this.render();
   }
 
   spawnSnake () {

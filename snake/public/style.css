@@ -12,12 +12,6 @@ body {
   box-shadow: 0 20px 7px -18px rgba(0, 0, 0, .3);
 }
 
-.snake-game-scoreboard {
-  background: #5f9263;
-  border: 3px solid #b2d8a2;
-  flex-grow: 1;
-}
-
 .snake-game-container {
   flex-basis: 600px;
 }
@@ -25,6 +19,12 @@ body {
 #snake-game {
   border: 3px solid #6afda4;
   background: #196342;
+}
+
+.snake-game-scoreboard {
+  background: #5f9263;
+  border: 3px solid #b2d8a2;
+  flex-grow: 1;
 }
 
 .scoreboard-label {
@@ -40,7 +40,22 @@ body {
   border: 1px solid #6afda4;
   color: #8df27c;
   width: 120px;
-  margin: auto;
+  margin: 0 auto 20px auto;
+}
+
+.snake-game-status {
+  color: #eee;
+}
+
+.scoreboard-highscores {
+  margin-top: 40px;
+  border-top: 3px solid #b2d8a2;
+  padding-top: 30px;
+  color: #eee;
+}
+
+.highscores-label {
+  font-size: 20px;
 }
 
 .footer {
