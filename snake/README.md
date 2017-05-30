@@ -6,7 +6,6 @@ Hello! This is my implementation of Snake on a HTML canvas in ES6.
 You can move with the arrow keys and press space to start.
 
 ### Instructions
-Feel free to use yarn instead of npm.
 
 ```bash
 # Running game with Webpack.
