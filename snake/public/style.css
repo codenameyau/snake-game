@@ -4,7 +4,7 @@ body {
 }
 
 .snake-game-body {
-  margin: 30px auto 20px auto;
+  margin: 30px auto;
   text-align: center;
   background: #517354;
   width: 800px;
@@ -57,6 +57,22 @@ body {
 
 .highscores-label {
   font-size: 20px;
+}
+
+.highscores {
+  margin-top: 20px;
+}
+
+.highscore {
+  margin-bottom: 5px;
+}
+
+.highscore-timestamp {
+  cursor: pointer;
+}
+
+.highscore-placeholder {
+  color: #8df27c;
 }
 
 .footer {

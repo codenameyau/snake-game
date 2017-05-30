@@ -37,10 +37,12 @@ export default class SnakeGame {
     this.snake = null;
     this.food = null;
     this.score = 0;
+    this.highScores = [];
 
     // Initialize internals.
     this.resetCanvas();
     this.resetCells();
+    this.loadHighScores();
     this.initEventListeners();
   }
 
@@ -98,10 +100,11 @@ export default class SnakeGame {
     this.spawnSnake();
     this.spawnFood();
     this.renderStatus();
-    this.render();
+    this.renderHighScores();
+    this.renderAnimation();
   }
 
-  render () {
+  renderAnimation () {
     this.resetCanvas();
     this.renderSnake();
     this.renderFood();
@@ -134,11 +137,53 @@ export default class SnakeGame {
       : this.running ? 'Playing' : 'Paused';
   }
 
+  renderHighScores () {
+    const highScoresContainer = document.body.querySelector('.highscores');
+    highScoresContainer.innerHTML = '';
+
+    this.highScores.forEach((highscore) => {
+      let date = new Date(highscore.timestamp);
+      let newScoreElement = document.createElement('div');
+      newScoreElement.className = 'highscore';
+      newScoreElement.innerHTML = `
+        <span class="highscore-timestamp" title="${date.toLocaleString()}">
+          ${date.toLocaleTimeString()}
+        </span>
+        <span class="highscore-placeholder">. . .</span>
+        ${highscore.value}
+      `;
+
+      highScoresContainer.appendChild(newScoreElement);
+    });
+  }
+
   endGame () {
     this.gameOver = true;
     this.running = false;
     this.clearInterval();
     this.renderStatus();
+    this.saveHighScore();
+  }
+
+  _sortScores (scoreA, scoreB) {
+    return scoreA.value > scoreB.value ? -1 : scoreA.value < scoreB.value ? 1 : 0;
+  }
+
+  loadHighScores () {
+    let highScores = localStorage.getItem('snake-highscores');
+    if (highScores) {
+      this.highScores = JSON.parse(highScores).sort(this._sortScores);
+    }
+  }
+
+  saveHighScore () {
+    if (this.score < 1) { return; }
+
+    const score = { timestamp: Date.now(), value: this.score };
+    this.highScores.push(score);
+    this.highScores = this.highScores.sort(this._sortScores).slice(0, 8);
+    localStorage.setItem('snake-highscores', JSON.stringify(this.highScores));
+    this.renderHighScores();
   }
 
   toggleRunning () {
@@ -218,7 +263,7 @@ export default class SnakeGame {
       this.snake.move(newHead[0], newHead[1]);
     }
 
-    this.render();
+    this.renderAnimation();
   }
 
   spawnSnake () {
