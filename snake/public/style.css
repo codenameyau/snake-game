@@ -4,10 +4,10 @@ body {
 }
 
 .snake-game-body {
-  margin: 50px auto 30px auto;
+  margin: 30px auto;
   text-align: center;
   background: #517354;
-  width: 850px;
+  width: 800px;
   display: flex;
   box-shadow: 0 20px 7px -18px rgba(0, 0, 0, .3);
 }

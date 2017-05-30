@@ -50,6 +50,7 @@ export default class SnakeGame {
 
   resetCells () {
     // Potentially re-visit with sparse matrix.
+    this.cells = [];
     for (let i = 0; i < this.width; i++) {
       this.cells.push([]);
       for (let j = 0; j < this.height; j++) {
@@ -179,21 +180,34 @@ export default class SnakeGame {
       case 'down': ++newHead[1]; break;
     }
 
+    const collidedWithWall = (
+      newHead[0] < 0 || newHead[0] >= this.width ||
+      newHead[1] < 0 || newHead[1] >= this.height
+    );
+
+    if (collidedWithWall) {
+      return this.endGame();
+    }
+
     const headCell = this.cells[newHead[0]][newHead[1]];
     const hasCollision = headCell !== null;
 
     if (hasCollision) {
-      if (headCell.entity === 'Food') {
+      if (!headCell) { // collision with unknown entity (possible bug?)
+        return this.endGame();
+      }
+
+      else if (headCell.entity === 'Snake') {
+        return this.endGame();
+      }
+
+      else if (headCell.entity === 'Food') {
         this.score += this.food.value;
         this.cells[newHead[0]][newHead[1]] = this.snake;
         this.snake.moveAndGrow(newHead[0], newHead[1]);
         delete this.food;
         this.spawnFood();
         this.renderScore();
-      }
-
-      else if (headCell.entity === 'Snake') {
-        this.endGame();
       }
     }
 
