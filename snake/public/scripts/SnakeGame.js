@@ -75,6 +75,9 @@ export default class SnakeGame {
         return this.toggleRunning();
       }
 
+      // Ignore all other inputs if the game is not running.
+      if (!this.running) { return; }
+
       const newDirection = this.directionMap[event.code];
 
       // Prevent the snake from moving backwards and colliding with itself.
@@ -85,8 +88,9 @@ export default class SnakeGame {
         this.snake.direction === 'down' && newDirection === 'up'
       );
 
-      if (!this.running || movingBackwards) { return; }
-      this.snake.setDirection(newDirection);
+      if (!movingBackwards) {
+        this.snake.setDirection(newDirection);
+      }
     };
 
     document.addEventListener('keydown', handleInputs, false);

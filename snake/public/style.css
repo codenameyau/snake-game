@@ -13,7 +13,7 @@ body {
 }
 
 .snake-game-container {
-  flex-basis: 560px;
+  flex-basis: 540px;
 }
 
 #snake-game {
