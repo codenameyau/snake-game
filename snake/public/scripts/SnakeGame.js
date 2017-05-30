@@ -111,46 +111,15 @@ export default class SnakeGame {
     this.ctx.fillRect(posX, posY, this.cellPadded, this.cellPadded);
   }
 
-  renderStatus () {
-    const status = document.body.querySelector('.snake-game-status');
-    status.innerHTML = this.gameOver ? 'Game Over'
-      : this.running ? 'Playing' : 'Paused';
+  renderScore () {
+    const scoreElement = document.body.querySelector('.scoreboard-score');
+    scoreElement.innerHTML = this.score;
   }
 
-  update () {
-    if (this.gameOver) { return; }
-
-    // Move snake along direction.
-    const head = this.snake.segments[0];
-    const direction = this.snake.direction;
-    let newHead = head.slice();
-
-    switch (direction) {
-      case 'left': --newHead[0]; break;
-      case 'right': ++newHead[0]; break;
-      case 'up': --newHead[1]; break;
-      case 'down': ++newHead[1]; break;
-    }
-
-    const headCell = this.cells[newHead[0]][newHead[1]];
-    const hasCollision = headCell !== null;
-
-    if (hasCollision) {
-      if (headCell.entity === 'Food') {
-        this.score += this.food.value;
-      } else if (headCell.entity === 'Snake') {
-        this.endGame();
-      }
-    }
-
-    else {
-      const tail = this.snake.segments[this.snake.segments.length - 1];
-      this.cells[newHead[0]][newHead[1]] = this.snake;
-      this.cells[tail[0]][tail[1]] = null;
-      this.snake.move(newHead[0], newHead[1]);
-    }
-
-    this.render();
+  renderStatus () {
+    const statusElement = document.body.querySelector('.snake-game-status');
+    statusElement.innerHTML = this.gameOver ? 'Game Over'
+      : this.running ? 'Playing' : 'Paused';
   }
 
   endGame () {
@@ -181,6 +150,50 @@ export default class SnakeGame {
 
   resetScore () {
     this.score = 0;
+    this.renderScore();
+  }
+
+  update () {
+    if (this.gameOver) { return; }
+
+    // Move snake along direction.
+    const head = this.snake.segments[0];
+    const direction = this.snake.direction;
+    let newHead = head.slice();
+
+    switch (direction) {
+      case 'left': --newHead[0]; break;
+      case 'right': ++newHead[0]; break;
+      case 'up': --newHead[1]; break;
+      case 'down': ++newHead[1]; break;
+    }
+
+    const headCell = this.cells[newHead[0]][newHead[1]];
+    const hasCollision = headCell !== null;
+
+    if (hasCollision) {
+      if (headCell.entity === 'Food') {
+        this.score += this.food.value;
+        this.cells[newHead[0]][newHead[1]] = this.snake;
+        this.snake.moveAndGrow(newHead[0], newHead[1]);
+        delete this.food;
+        this.spawnFood();
+        this.renderScore();
+      }
+
+      else if (headCell.entity === 'Snake') {
+        this.endGame();
+      }
+    }
+
+    else {
+      const tail = this.snake.segments[this.snake.segments.length - 1];
+      this.cells[newHead[0]][newHead[1]] = this.snake;
+      this.cells[tail[0]][tail[1]] = null;
+      this.snake.move(newHead[0], newHead[1]);
+    }
+
+    this.render();
   }
 
   spawnSnake () {
