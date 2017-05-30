@@ -9,11 +9,11 @@ export default class SnakeGame {
     // Canvas and rendering properties.
     this.canvas = document.querySelector(canvasId);
     this.ctx = this.canvas.getContext('2d');
-    this.width = options.width || 40;
-    this.height = options.height || 40;
+    this.width = this._clamp(options.width || 40, 25, 100);
+    this.height = this._clamp(options.height || 40, 25, 100);
     this.cellSize = Math.floor(this.canvas.width / this.width);
     this.cellPadded = this.cellSize - 2;
-    this.speed = options.speed || 80;
+    this.speed = this._clamp(options.speed || 70, 10, 500);
     this.interval = null;
 
     // Define game internals and options.
@@ -264,5 +264,9 @@ export default class SnakeGame {
 
   _getRandomNumber (min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
+  }
+
+  _clamp (num, min, max) {
+    return Math.max(min, Math.min(num, max));
   }
 }

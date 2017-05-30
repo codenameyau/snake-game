@@ -46,13 +46,13 @@ These are the steps I took when creating this game.
 [+] Implement collision detection matrix
 [+] Handle user input
 [+] Implement game status
+[+] Implement score
 [+] Implement start/pause/restart game
 [+] Implement game loop and rendering animation frames
 [+] Implement snake movement
 [+] Implement snake and food collision events
 [+] Fix bug with snake colliding with itself when moving backwards
 [-] Implement wall collision
-[+] Implement score and calculator
 [-] Implement top 5 high scores
 ```
 
