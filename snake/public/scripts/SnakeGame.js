@@ -34,6 +34,7 @@ export default class SnakeGame {
     };
 
     // Game entities and mechanics.
+    this.player = options.player.substring(0, 12) || 'Play Tester';
     this.snake = null;
     this.food = null;
     this.score = 0;
@@ -146,11 +147,11 @@ export default class SnakeGame {
       let newScoreElement = document.createElement('div');
       newScoreElement.className = 'highscore';
       newScoreElement.innerHTML = `
-        <span class="highscore-timestamp" title="${date.toLocaleString()}">
-          ${date.toLocaleTimeString()}
+        <span class="highscore-player" title="${date.toLocaleString()}">
+          ${highscore.player}
         </span>
         <span class="highscore-placeholder">. . .</span>
-        ${highscore.value}
+        <span class="highscore-value">${highscore.value}</span>
       `;
 
       highScoresContainer.appendChild(newScoreElement);
@@ -179,7 +180,12 @@ export default class SnakeGame {
   saveHighScore () {
     if (this.score < 1) { return; }
 
-    const score = { timestamp: Date.now(), value: this.score };
+    const score = {
+      timestamp: Date.now(),
+      value: this.score,
+      player: this.player
+    };
+
     this.highScores.push(score);
     this.highScores = this.highScores.sort(this._sortScores).slice(0, 8);
     localStorage.setItem('snake-highscores', JSON.stringify(this.highScores));
