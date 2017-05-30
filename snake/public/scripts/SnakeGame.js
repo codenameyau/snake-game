@@ -11,6 +11,8 @@ export default class SnakeGame {
     this.height = options.height || 40;
     this.cellSize = Math.floor(this.canvas.width / this.width);
     this.cellPadded = this.cellSize - 2;
+    this.speed = options.speed || 500;
+    this.interval = null;
 
     // Define game internals and options.
     this.initLength = options.length || 8;
@@ -47,11 +49,11 @@ export default class SnakeGame {
 
   initEventListeners () {
     const handleKeyup = (event) => {
-      if (this.gameInputs.has(event.code)) {
-        event.preventDefault();
-      } else {
+      if (!this.gameInputs.has(event.code)) {
         return;
       }
+
+      event.preventDefault();
 
       if (event.code === 'Escape') {
         this.newGame();
@@ -98,13 +100,25 @@ export default class SnakeGame {
     status.innerHTML = this.running ? 'Playing' : 'Paused';
   }
 
-  start () {
-    this.running = true;
+  update () {
+    console.log(1);
   }
 
   toggleRunning () {
     this.running = !this.running;
     this.renderStatus();
+    if (this.running) {
+      this.interval = window.setInterval(this.update.bind(this), this.speed);
+    } else if (!this.running && this.interval) {
+      this.clearInterval();
+    }
+  }
+
+  clearInterval () {
+    if (this.interval) {
+      window.clearInterval(this.interval);
+      this.interval = null;
+    }
   }
 
   resetScore () {
@@ -113,6 +127,7 @@ export default class SnakeGame {
 
   newGame () {
     this.running = false;
+    this.clearInterval();
     this.resetCanvas();
     this.resetCells();
     this.renderStatus();

@@ -45,8 +45,8 @@ These are the steps I took when creating this game.
 [+] Spawn randomly generated food on canvas
 [+] Implement collision detection matrix
 [+] Handle user input
-[-] Implement game status
-[-] Implement start/pause/restart game
+[+] Implement game status
+[+] Implement start/pause/restart game
 [-] Implement game loop and rendering animation frames
 [-] Implement snake movement
 [-] Implement collision and events
