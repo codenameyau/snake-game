@@ -50,7 +50,8 @@ These are the steps I took when creating this game.
 [+] Implement game loop and rendering animation frames
 [+] Implement snake movement
 [+] Implement snake and food collision events
-[+] Implement wall collision
+[+] Fix bug with snake colliding with itself when moving backwards
+[-] Implement wall collision
 [+] Implement score and calculator
 [-] Implement top 5 high scores
 ```

@@ -252,6 +252,7 @@ export default class SnakeGame {
   }
 
   getRandomEmptyCell (minX = 0, maxX = this.width - 1, minY = 0, maxY = this.height - 1) {
+    minX += 2; maxY -= 2; // Avoid spawning entity adjacent to edge.
     let randomX = this._getRandomNumber(minX, maxX);
     let randomY = this._getRandomNumber(minY, maxY);
     while (!this.isEmptyCell(randomX, randomY)) {
