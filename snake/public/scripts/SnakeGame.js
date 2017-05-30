@@ -4,6 +4,8 @@ import Food from './Food';
 export default class SnakeGame {
 
   constructor (canvasId = 'snake-game', options = {}) {
+    this.entity = 'SnakeGame';
+
     // Canvas and rendering properties.
     this.canvas = document.querySelector(canvasId);
     this.ctx = this.canvas.getContext('2d');
@@ -11,13 +13,14 @@ export default class SnakeGame {
     this.height = options.height || 40;
     this.cellSize = Math.floor(this.canvas.width / this.width);
     this.cellPadded = this.cellSize - 2;
-    this.speed = options.speed || 500;
+    this.speed = options.speed || 80;
     this.interval = null;
 
     // Define game internals and options.
     this.initLength = options.length || 8;
     this.cells = [];
     this.running = false;
+    this.gameOver = false;
     this.gameInputs = new Set(
       ['Escape', 'Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']
     );
@@ -74,7 +77,20 @@ export default class SnakeGame {
     document.addEventListener('keyup', handleKeyup, false);
   }
 
+  newGame () {
+    this.gameOver = false;
+    this.running = false;
+    this.clearInterval();
+    this.resetCells();
+    this.resetScore();
+    this.spawnSnake();
+    this.spawnFood();
+    this.renderStatus();
+    this.render();
+  }
+
   render () {
+    this.resetCanvas();
     this.renderSnake();
     this.renderFood();
   }
@@ -97,19 +113,61 @@ export default class SnakeGame {
 
   renderStatus () {
     const status = document.body.querySelector('.snake-game-status');
-    status.innerHTML = this.running ? 'Playing' : 'Paused';
+    status.innerHTML = this.gameOver ? 'Game Over'
+      : this.running ? 'Playing' : 'Paused';
   }
 
   update () {
-    console.log(1);
+    if (this.gameOver) { return; }
+
+    // Move snake along direction.
+    const head = this.snake.segments[0];
+    const direction = this.snake.direction;
+    let newHead = head.slice();
+
+    switch (direction) {
+      case 'left': --newHead[0]; break;
+      case 'right': ++newHead[0]; break;
+      case 'up': --newHead[1]; break;
+      case 'down': ++newHead[1]; break;
+    }
+
+    const headCell = this.cells[newHead[0]][newHead[1]];
+    const hasCollision = headCell !== null;
+
+    if (hasCollision) {
+      if (headCell.entity === 'Food') {
+        this.score += this.food.value;
+      } else if (headCell.entity === 'Snake') {
+        this.endGame();
+      }
+    }
+
+    else {
+      const tail = this.snake.segments[this.snake.segments.length - 1];
+      this.cells[newHead[0]][newHead[1]] = this.snake;
+      this.cells[tail[0]][tail[1]] = null;
+      this.snake.move(newHead[0], newHead[1]);
+    }
+
+    this.render();
+  }
+
+  endGame () {
+    this.gameOver = true;
+    this.running = false;
+    this.clearInterval();
+    this.renderStatus();
   }
 
   toggleRunning () {
+    if (this.gameOver) { return; }
+
     this.running = !this.running;
     this.renderStatus();
     if (this.running) {
       this.interval = window.setInterval(this.update.bind(this), this.speed);
-    } else if (!this.running && this.interval) {
+    } else if (!this.running) {
       this.clearInterval();
     }
   }
@@ -123,18 +181,6 @@ export default class SnakeGame {
 
   resetScore () {
     this.score = 0;
-  }
-
-  newGame () {
-    this.running = false;
-    this.clearInterval();
-    this.resetCanvas();
-    this.resetCells();
-    this.renderStatus();
-    this.resetScore();
-    this.spawnSnake();
-    this.spawnFood();
-    this.render();
   }
 
   spawnSnake () {

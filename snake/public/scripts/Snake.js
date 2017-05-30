@@ -1,6 +1,7 @@
 export default class Snake {
 
   constructor (x1, y1, x2, y2, options = {}) {
+    this.entity = 'Snake';
     this.startingPosition = [x1, y1, x2, y2];
     this.headColor = options.headColor || '#ec2626';
     this.color = options.color || '#52ee38';
@@ -55,5 +56,14 @@ export default class Snake {
     if (validDirection) {
       this.direction = direction;
     }
+  }
+
+  move (x, y) {
+    this.segments.pop(); // Remove tail.
+    this.segments.unshift([x, y]); // Grow new head.
+  }
+
+  moveAndGrow (x, y) {
+    this.segments.unshift([x, y]);
   }
 }
