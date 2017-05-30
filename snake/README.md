@@ -26,6 +26,10 @@ of the segments as the new head. If the head of the snake collides with a food,
 then tail is not popped. If the head collides with another snake segment, then
 the game is over.
 
+Collision detection is implemented via a matrix that keeps track of all cells
+in the game. Rendering only occurs for the snake segments and food. The
+individual matrix cells are not rendered.
+
 ### Tasks
 These are the steps I took when creating this game.
 ```
@@ -37,8 +41,9 @@ These are the steps I took when creating this game.
 [+] Design and create Food class
 [+] Implement and render snake
 [+] Implement and render food
-[-] Spawn randomly generated snake on canvas
-[-] Spawn randomly generated food on canvas
+[+] Spawn randomly generated snake on canvas
+[+] Spawn randomly generated food on canvas
+[+] Implement collision detection matrix
 [-] Handle user input
 [-] Implement start/pause/restart game
 [-] Implement game loop and rendering animation frames
