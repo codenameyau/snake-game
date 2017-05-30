@@ -1,8 +1,8 @@
 import SnakeGame from './scripts/SnakeGame';
 
 const game = new SnakeGame('#snake-game', {
-  width: 40,
-  height: 40,
+  width: 40, // change canvas width to be a multiple
+  height: 40, // change canvas height to be a multiple
   speed: 60 // lower is faster
 });
 
