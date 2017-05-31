@@ -277,13 +277,13 @@ export default class SnakeGame {
   }
 
   spawnSnake () {
-    const minX = this.initLength;
-    const maxX = this.width - this.initLength;
-    const minY = this.initLength;
-    const maxY = this.height - this.initLength;
-    const head = this.getRandomEmptyCell(minX, maxX, minY, maxY);
     const randomDirection = this._getRandomNumber(0, 4);
     const length = this.initLength;
+    const minX = this.initLength + 2;
+    const maxX = this.width - this.initLength - 2;
+    const minY = this.initLength + 2;
+    const maxY = this.height - this.initLength - 2;
+    const head = this.getRandomEmptyCell(minX, maxX, minY, maxY);
 
     // Compute the segments of the snake based on it's head and length.
     switch (randomDirection) {
@@ -320,7 +320,6 @@ export default class SnakeGame {
   }
 
   getRandomEmptyCell (minX = 0, maxX = this.width - 1, minY = 0, maxY = this.height - 1) {
-    minX += 2; maxY -= 2; // Avoid spawning entity adjacent to edge.
     let randomX = this._getRandomNumber(minX, maxX);
     let randomY = this._getRandomNumber(minY, maxY);
     while (!this.isEmptyCell(randomX, randomY)) {
