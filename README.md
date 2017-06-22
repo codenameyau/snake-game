@@ -1,9 +1,20 @@
 # snake-game
 
-Hello! This is my implementation of Snake on a HTML canvas in ES6.
-You can move with the arrow keys and press space to start.
+![Snake Game](https://user-images.githubusercontent.com/3826772/27411664-1a401f02-56bd-11e7-8179-1fc73464ad83.png)
 
-### Instructions
+## Implementation Details
+I implemented the snake using an Array (Queue), where the first element represents
+the head of the snake and the last element represents the tail. As the snake
+moves, the tail is popped and the new cell position is appended to the front
+of the segments as the new head. If the head of the snake collides with a food,
+then tail is not popped. If the head collides with another snake segment, then
+the game is over.
+
+Collision detection is implemented via a matrix that keeps track of all cells
+in the game. The snake segments and food are then drawn on the canvas. The
+individual matrix cells are not rendered.
+
+## Running Instructions
 
 ```bash
 # Running game with Webpack.
@@ -16,19 +27,8 @@ npm test
 
 Then visit http://localhost:8080
 
-### Implementation
-I implemented the snake using an Array (Queue), where the first element represents
-the head of the snake and the last element represents the tail. As the snake
-moves, the tail is popped and the new cell position is appended to the front
-of the segments as the new head. If the head of the snake collides with a food,
-then tail is not popped. If the head collides with another snake segment, then
-the game is over.
 
-Collision detection is implemented via a matrix that keeps track of all cells
-in the game. Rendering only occurs for the snake segments and food. The
-individual matrix cells are not rendered.
-
-### Tasks
+## Tasks
 These are the steps I took when creating this game.
 ```
 [+] Setup Webpack for ES6
