@@ -1,6 +1,4 @@
-# Snake
-
-Author: Jorge Yau <codenameyau@gmail.com>
+# snake-game
 
 Hello! This is my implementation of Snake on a HTML canvas in ES6.
 You can move with the arrow keys and press space to start.
@@ -62,5 +60,5 @@ These are the steps I took when creating this game.
 [-] Add music and sound effects
 [-] Implement no walls option
 [-] Implement options UI
-[-] Multiplayer
+[-] Multiplayer (separate repo)
 ```
