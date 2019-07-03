@@ -3,7 +3,7 @@ body {
   font-family: monospace;
 }
 
-.snake-game-body {
+.snake-game--body {
   margin: 30px auto;
   text-align: center;
   background: #517354;
@@ -12,7 +12,7 @@ body {
   box-shadow: 0 20px 7px -18px rgba(0, 0, 0, .3);
 }
 
-.snake-game-container {
+.snake-game--container {
   flex-basis: 540px;
 }
 
@@ -21,20 +21,20 @@ body {
   background: #196342;
 }
 
-.snake-game-scoreboard {
+.snake-game--scoreboard {
   background: #5f9263;
   border: 3px solid #b2d8a2;
   flex-grow: 1;
 }
 
-.scoreboard-label {
+.scoreboard--label {
   margin-top: 30px;
   font-size: 30px;
   color: #eee;
   padding: 10px;
 }
 
-.scoreboard-score {
+.scoreboard--score {
   font-size: 40px;
   background: #196342;
   border: 1px solid #6afda4;
@@ -43,19 +43,19 @@ body {
   margin: 0 auto 20px auto;
 }
 
-.snake-game-status {
+.snake-game--status {
   color: #eee;
   font-size: 18px;
 }
 
-.scoreboard-highscores {
+.scoreboard--highscores {
   margin-top: 40px;
   border-top: 3px solid #b2d8a2;
   padding-top: 30px;
   color: #eee;
 }
 
-.highscores-label {
+.highscores--label {
   font-size: 20px;
 }
 

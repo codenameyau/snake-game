@@ -132,12 +132,12 @@ export default class SnakeGame {
   }
 
   renderScore () {
-    const scoreElement = document.body.querySelector('.scoreboard-score');
+    const scoreElement = document.body.querySelector('.scoreboard--score');
     scoreElement.innerHTML = this.score;
   }
 
   renderStatus () {
-    const statusElement = document.body.querySelector('.snake-game-status');
+    const statusElement = document.body.querySelector('.snake-game--status');
     statusElement.innerHTML = this.gameOver ? 'Game Over'
       : this.running ? 'Playing' : 'Paused';
   }
