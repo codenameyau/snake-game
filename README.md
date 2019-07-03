@@ -2,6 +2,9 @@
 
 ![Snake Game](https://user-images.githubusercontent.com/3826772/27411664-1a401f02-56bd-11e7-8179-1fc73464ad83.png)
 
+## Website
+https://codenameyau.github.io/snake-game/
+
 ## Implementation Details
 I implemented the snake using an Array (Queue), where the first element represents
 the head of the snake and the last element represents the tail. As the snake
@@ -56,9 +59,10 @@ These are the steps I took when creating this game.
 
 ### Future Enhancements
 ```
-[-] Revisit collision detection algorithm with sparse matrix
-[-] Add music and sound effects
-[-] Implement no walls option
-[-] Implement options UI
-[-] Multiplayer (separate repo)
+[ ] Revisit collision detection algorithm with sparse matrix
+[ ] Add animations
+[ ] Add music and sound effects
+[ ] Implement no walls option
+[ ] Implement options UI
+[ ] Multiplayer (separate repo)
 ```
