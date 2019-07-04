@@ -59,6 +59,7 @@ These are the steps I took when creating this game.
 
 ### Future Enhancements
 ```
+[ ] Add mobile touch support
 [ ] Revisit collision detection algorithm with sparse matrix
 [ ] Add animations
 [ ] Add music and sound effects
