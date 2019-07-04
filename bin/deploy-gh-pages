@@ -2,7 +2,7 @@
 
 # Sync master branch and prepare staging branch.
 git checkout master
-git pull
+git pull origin master
 git checkout -B gh-pages-staging
 
 # Build storybook-static for staging and push to gh-pages.
