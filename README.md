@@ -1,6 +1,6 @@
 # snake-game
 
-![Snake Game](https://user-images.githubusercontent.com/3826772/27411664-1a401f02-56bd-11e7-8179-1fc73464ad83.png)
+![Snake Game](https://user-images.githubusercontent.com/3826772/60639920-9ccf7980-9df2-11e9-9b32-7be1e3412a77.png)
 
 ## Website
 https://codenameyau.github.io/snake-game/
