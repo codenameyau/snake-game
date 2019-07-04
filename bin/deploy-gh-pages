@@ -6,6 +6,7 @@ git pull origin master
 git checkout -B gh-pages-staging
 
 # Build storybook-static for staging and push to gh-pages.
+npm run build
 git commit -m "Deploy to gh-pages"
 git subtree split --prefix public -b gh-pages
 git push origin -f gh-pages:gh-pages
