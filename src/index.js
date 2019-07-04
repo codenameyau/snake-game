@@ -1,4 +1,5 @@
 import SnakeGame from './scripts/SnakeGame';
+import css from './style.css';
 
 const game = new SnakeGame('#snake-game', {
   player: 'Play Tester',
