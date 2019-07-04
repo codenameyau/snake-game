@@ -23,7 +23,7 @@ export default class SnakeGame {
     this.gameOver = false;
 
     this.gameInputs = new Set(
-      ['Escape', 'Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']
+      ['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']
     );
 
     this.directionMap = {
@@ -69,7 +69,7 @@ export default class SnakeGame {
       event.stopPropagation();
       event.preventDefault();
 
-      if (event.code === 'Escape') {
+      if (this.gameOver && event.code === 'Space') {
         return this.newGame();
       } else if (event.code === 'Space') {
         return this.toggleRunning();
