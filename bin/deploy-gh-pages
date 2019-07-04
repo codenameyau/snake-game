@@ -4,6 +4,8 @@
 git checkout master
 git pull origin master
 git checkout -B gh-pages-staging
+git branch -D gh-pages
+git push origin --delete gh-pages
 
 # Build storybook-static for staging and push to gh-pages.
 npm run build
