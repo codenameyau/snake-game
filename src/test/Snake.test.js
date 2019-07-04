@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import Snake from '../public/scripts/Snake';
+import Snake from '../scripts/Snake';
 
 describe('Snake', () => {
   describe('.createSegments()', () => {
