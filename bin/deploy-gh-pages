@@ -10,7 +10,7 @@ git push origin --delete gh-pages
 # Build storybook-static for staging and push to gh-pages.
 npm run build
 git subtree split --prefix build -b gh-pages
-git commit -m "Deploy to gh-pages"
+git commit -a -m "Deploy to gh-pages"
 git push origin -f gh-pages:gh-pages
 
 # Clean up branches and files.
