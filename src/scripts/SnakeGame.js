@@ -221,7 +221,9 @@ export default class SnakeGame {
   }
 
   update () {
-    if (this.gameOver) { return; }
+    if (this.gameOver) {
+      return;
+    }
 
     // Move snake along direction.
     const head = this.snake.segments[0];
